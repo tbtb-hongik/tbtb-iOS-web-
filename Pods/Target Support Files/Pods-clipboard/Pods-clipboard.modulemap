@@ -1,0 +1,6 @@
+framework module Pods_clipboard {
+  umbrella header "Pods-clipboard-umbrella.h"
+
+  export *
+  module * { export * }
+}
