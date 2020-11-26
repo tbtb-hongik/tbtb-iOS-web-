@@ -78,24 +78,25 @@ extension AppDelegate{
                     NSLog("An error has occurred up: \(e.localizedDescription)")
                     return
                 }
-                
+                //String 형식으로 Data 받기
 //                DispatchQueue.main.async {
 //                    if let data = data{
 //                        let str = String(decoding: data, as: UTF8.self)
 //                        print(str)
-//                        let msgString = "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+//                        let msgString = ""
 //                        let alert = UIAlertController(title: "Your title", message: msgString, preferredStyle: .alert)
 //                        let cancelButton = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
 //                        alert.addAction(cancelButton)
 //                        UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
 //                        //self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                
 //                        //TTS
-////                        let synthesizer = AVSpeechSynthesizer()
-////                        let utterance = AVSpeechUtterance(string : str)
-////                        utterance.voice = AVSpeechSynthesisVoice(language: "ko-KR")
-////                        utterance.rate = 0.4
-////                        synthesizer.speak(utterance)
-////                        self.showAlert(vc: mvc, title: "as", message: "dsa", actionTitle: "dsad", actionStyle: .default)
+//                        let synthesizer = AVSpeechSynthesizer()
+//                        let utterance = AVSpeechUtterance(string : str)
+//                        utterance.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+//                        utterance.rate = 0.4
+//                        synthesizer.speak(utterance)
+//                        self.showAlert(vc: mvc, title: "as", message: "dsa", actionTitle: "dsad", actionStyle: .default)
 //                    }
 //
 //                }
@@ -110,13 +111,17 @@ extension AppDelegate{
                         let object = try JSONSerialization.jsonObject(with: data!, options: []) as! [String : Any]
                         
                         personsList = object
+                        if ((personsList.index(forKey: "error")) != nil){
+                            print("Server Error Occured")
+                            return
+                        }
                         
-                        for item in (personsList["Object"] as! Array<Any>? as! Array<String>){
+                        for item in (personsList["Object"] as! Array<String>){
                             objectString += item
                             objectString += " "
                         }
 
-                        for item in (personsList["Label"] as! Array<Any>? as! Array<String>){
+                        for item in (personsList["Label"] as! Array<String>){
                             labelString += item
                             labelString += " "
                         }
