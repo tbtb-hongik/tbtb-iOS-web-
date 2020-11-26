@@ -17,7 +17,7 @@
 		0D0C5E3B2485211200789009 /* clipboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0C5E3A2485211200789009 /* clipboardUITests.swift */; };
 		0D736EF6249F9CFD005E72E5 /* popUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D736EF5249F9CFD005E72E5 /* popUpViewController.swift */; };
 		0D83C78E249C8A8000FB91B5 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D83C78D249C8A8000FB91B5 /* WebKit.framework */; };
-		691568DA25597F9F00EBBA88 /* ConnectServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691568D925597F9F00EBBA88 /* ConnectServerViewController.swift */; };
+		69B08A86256BA0860031A2C4 /* TempWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B08A85256BA0860031A2C4 /* TempWebViewController.swift */; };
 		A69A1F786FE3F01BF117AF86 /* Pods_clipboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C7C5E967F262A4E1530D1E /* Pods_clipboard.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,7 +55,7 @@
 		0D0C5E3C2485211200789009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D736EF5249F9CFD005E72E5 /* popUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUpViewController.swift; sourceTree = "<group>"; };
 		0D83C78D249C8A8000FB91B5 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		691568D925597F9F00EBBA88 /* ConnectServerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectServerViewController.swift; sourceTree = "<group>"; };
+		69B08A85256BA0860031A2C4 /* TempWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempWebViewController.swift; sourceTree = "<group>"; };
 		74C7C5E967F262A4E1530D1E /* Pods_clipboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_clipboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D417A5AB01CF966DD672517 /* Pods-clipboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clipboard.debug.xcconfig"; path = "Target Support Files/Pods-clipboard/Pods-clipboard.debug.xcconfig"; sourceTree = "<group>"; };
 		7DD1E48605CFEBD0BDF05539 /* Pods-clipboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clipboard.release.xcconfig"; path = "Target Support Files/Pods-clipboard/Pods-clipboard.release.xcconfig"; sourceTree = "<group>"; };
@@ -121,7 +121,7 @@
 				0D0C5E232485211200789009 /* LaunchScreen.storyboard */,
 				0D0C5E262485211200789009 /* Info.plist */,
 				0D736EF5249F9CFD005E72E5 /* popUpViewController.swift */,
-				691568D925597F9F00EBBA88 /* ConnectServerViewController.swift */,
+				69B08A85256BA0860031A2C4 /* TempWebViewController.swift */,
 			);
 			path = clipboard;
 			sourceTree = "<group>";
@@ -337,10 +337,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				691568DA25597F9F00EBBA88 /* ConnectServerViewController.swift in Sources */,
 				0D0C5E1D2485210E00789009 /* ViewController.swift in Sources */,
 				0D0C5E192485210E00789009 /* AppDelegate.swift in Sources */,
 				0D0C5E1B2485210E00789009 /* SceneDelegate.swift in Sources */,
+				69B08A86256BA0860031A2C4 /* TempWebViewController.swift in Sources */,
 				0D736EF6249F9CFD005E72E5 /* popUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,9 +8,11 @@
 
 import UIKit
 import Alamofire
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         NotificationCenter.default.addObserver(forName: UIPasteboard.changedNotification, object: nil, queue: nil, using: sendData)
@@ -52,14 +54,14 @@ extension AppDelegate{
     func sendData(_ notification: Notification) {
         print("send bef")
         if let theString = UIPasteboard.general.string{
-            let os = "ios다 됐냐?"
+            let os = "iOS"
             let myURL = theString
             let param = "os=\(os)&url=\(myURL)"
             let paramData = param.data(using: .utf8)
-
+            
+            
             //
             let url = URL(string : "http://13.251.164.73:5555/android")
-
             //
             var request = URLRequest(url: url!)
             request.httpMethod = "POST"
@@ -73,18 +75,89 @@ extension AppDelegate{
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 //
                 if let e = error {
-                    NSLog("An error has occurred: \(e.localizedDescription)")
+                    NSLog("An error has occurred up: \(e.localizedDescription)")
                     return
                 }
-
-                //응답처리
+                
+//                DispatchQueue.main.async {
+//                    if let data = data{
+//                        let str = String(decoding: data, as: UTF8.self)
+//                        print(str)
+//                        let msgString = "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+//                        let alert = UIAlertController(title: "Your title", message: msgString, preferredStyle: .alert)
+//                        let cancelButton = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+//                        alert.addAction(cancelButton)
+//                        UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
+//                        //self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+//                        //TTS
+////                        let synthesizer = AVSpeechSynthesizer()
+////                        let utterance = AVSpeechUtterance(string : str)
+////                        utterance.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+////                        utterance.rate = 0.4
+////                        synthesizer.speak(utterance)
+////                        self.showAlert(vc: mvc, title: "as", message: "dsa", actionTitle: "dsad", actionStyle: .default)
+//                    }
+//
+//                }
+                var personsList = [String : Any]()
+                var objectString : String = "사진 속의 객체 : "
+                var labelString : String = "사진 속의 디테일 객체 : "
+                var totalString : String = ""
+                let enter : String = "\n"
+//                응답처리
                 DispatchQueue.main.async {
                     do {
-                        let object = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary
-                        guard let jsonObject = object else {return}
+                        let object = try JSONSerialization.jsonObject(with: data!, options: []) as! [String : Any]
+                        
+                        personsList = object
+                        
+                        for item in (personsList["Object"] as! Array<Any>? as! Array<String>){
+                            objectString += item
+                            objectString += " "
+                        }
 
-                        NSLog("post json data = %@", jsonObject)
-
+                        for item in (personsList["Label"] as! Array<Any>? as! Array<String>){
+                            labelString += item
+                            labelString += " "
+                        }
+                        
+                        var textFlag = 0
+                        var tmptext = ""
+                        
+                        if let retText = personsList["Text"] as? String {
+                            if (retText == ""){
+                                print("NULL")
+                            }
+                            else{
+                                totalString += "사진에 글자가 존재합니다"
+                                totalString += enter
+                                totalString += enter
+                                textFlag = 1
+                                tmptext += retText
+                            }
+                        }
+                        else {
+                            print("Error") // Was not a string
+                        }
+                        
+                        totalString += objectString
+                        totalString += enter
+                        totalString += "."
+                        totalString += labelString
+                        totalString += enter
+                        totalString += "."
+                        
+                        if (textFlag == 1){
+                            totalString += "텍스트 : "
+                            totalString += tmptext
+                        }
+                        
+                        let alert = UIAlertController(title: "분석 결과", message: totalString, preferredStyle: .alert)
+                        let cancelButton = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+                        alert.addAction(cancelButton)
+                        UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
+                        
+                        
                     } catch let e as NSError {
                         NSLog("An error has occurred: \(e.localizedDescription)")
                     }
@@ -95,43 +168,34 @@ extension AppDelegate{
         }
          //POST전송
     }
-    
-    
-    
-    
-    
-    //        let sessionConfig = URLSessionConfiguration.default
-    //        let urlString = "http://13.251.164.73:5555/list"
-    //
-    //        if let encodeString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed), let url = URL(string: encodeString){
-    //            var request = URLRequest(url: url)
-    //            request.httpMethod = "POST"
-    //
-    //            let params = dicToQuery(["os" : "android", "url" : "@@@@@@@@@@@@@@@@@@@@@@@"])
-    //            request.httpBody = params.data(using: String.Encoding.utf8, allowLossyConversion: true)
-    //
-    //            let urlSession = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
-    ////            let sessionTask = urlSession.dataTask(with: request){
-    ////                (data, response, error) in dataFromURLCompletionClosure(response,data)
-    ////            }
-    //            sessionTask.resume()
 
-
-
-
-func applicationUserDidChangeClipboard(_ notification: Notification){
-    
-    if let theString = UIPasteboard.general.string{
-        print("now : \(theString)")
+    func applicationUserDidChangeClipboard(_ notification: Notification){
+        
+        if let theString = UIPasteboard.general.string{
+            print("now : \(theString)")
+        }
+        print("clipboard change")
     }
-    print("clipboard change")
-}
 
 }
 
 
-
-
+//계층 뷰에서 최상위 뷰를 가져오기 위한 것
+extension UIApplication {
+    class func topViewController(controller: UIViewController? = UIApplication.shared.windows.first?.rootViewController) -> UIViewController? {
+    if let navigationController = controller as? UINavigationController {
+        return topViewController(controller: navigationController.visibleViewController)
+    }
+    if let tabController = controller as? UITabBarController {
+        if let selected = tabController.selectedViewController {
+            return topViewController(controller: selected)
+        }
+    }
+    if let presented = controller?.presentedViewController {
+        return topViewController(controller: presented)
+    }
+    return controller
+} }
 
 
 

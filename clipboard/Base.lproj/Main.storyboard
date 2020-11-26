@@ -1,18 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
+        <scene sceneID="bSb-8G-AWe">
+            <objects>
+                <viewController id="3to-fD-iwW" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aBH-uW-HSb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Dk7-XB-g7R"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q8A-9b-bAr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-752" y="795"/>
+        </scene>
+        <!--mainForm-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="clipboard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainForm" title="mainForm" id="BYZ-38-t0r" customClass="ViewController" customModule="clipboard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -91,15 +106,20 @@
                                     <constraint firstAttribute="bottom" secondItem="qca-1I-xqo" secondAttribute="bottom" constant="8" id="g3S-Bk-Vhz"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="uj2-i4-yTQ">
+                                <rect key="frame" x="197" y="360" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="uj2-i4-yTQ" firstAttribute="centerX" secondItem="UC8-Ig-jHk" secondAttribute="centerX" id="6om-fM-Q2I"/>
                             <constraint firstItem="UC8-Ig-jHk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="D3c-Ug-D13"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IFA-YE-OCx" secondAttribute="bottom" id="QBu-kR-WiD"/>
                             <constraint firstItem="UC8-Ig-jHk" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="2" id="XIG-jw-xre"/>
                             <constraint firstItem="UC8-Ig-jHk" firstAttribute="top" secondItem="Tcq-Dg-yu8" secondAttribute="bottom" constant="-13" id="Yjn-eS-nTy"/>
                             <constraint firstItem="Tcq-Dg-yu8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="aYv-Qu-6sD"/>
+                            <constraint firstItem="uj2-i4-yTQ" firstAttribute="centerY" secondItem="UC8-Ig-jHk" secondAttribute="centerY" id="bVK-fH-8Je"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UC8-Ig-jHk" secondAttribute="trailing" id="c1W-Lh-tJP"/>
                             <constraint firstItem="Tcq-Dg-yu8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="g1o-lY-Lu1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Tcq-Dg-yu8" secondAttribute="trailing" id="hqf-uh-t20"/>
@@ -112,6 +132,7 @@
                         <outlet property="goBackBttn" destination="yMh-8E-rFf" id="g35-EQ-8Kq"/>
                         <outlet property="goForwardBttn" destination="vT1-1z-oLT" id="29v-Xt-WEj"/>
                         <outlet property="linkView" destination="Tcq-Dg-yu8" id="rPO-MA-tF7"/>
+                        <outlet property="myIndicatorView" destination="uj2-i4-yTQ" id="bnA-CU-0kT"/>
                         <outlet property="reloadBttn" destination="VOs-dz-KXS" id="Rva-9a-OKx"/>
                         <outlet property="urlTextField" destination="qca-1I-xqo" id="KKI-GM-JJL"/>
                         <outlet property="webView" destination="UC8-Ig-jHk" id="hUb-3A-Bfk"/>
@@ -121,10 +142,10 @@
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="119.83695652173914"/>
         </scene>
-        <!--Pop Up View Controller-->
+        <!--secondForm-->
         <scene sceneID="TfF-wk-RcA">
             <objects>
-                <viewController id="HD2-mJ-0r5" customClass="popUpViewController" customModule="clipboard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="secondForm" title="secondForm" id="HD2-mJ-0r5" customClass="popUpViewController" customModule="clipboard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kmf-ad-OyF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
