@@ -129,7 +129,7 @@ extension AppDelegate{
                                 print("NULL")
                             }
                             else{
-                                totalString += "사진에 글자가 존재합니다"
+                                totalString += "사진에 글자가 포함되어 있습니다."
                                 totalString += enter
                                 totalString += enter
                                 textFlag = 1
